@@ -11,7 +11,12 @@ router.get("/:id", async (req, res, next) => {
   res.status(200).json(data);
 });
 router.post("/", async (req, res, next) => {
-  next();
+  try {
+    const data = await projectsFunctions.postProject(req.body);
+    res.status(201).json(data);
+  } catch {
+    next();
+  }
 });
 
 module.exports = router;
