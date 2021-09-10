@@ -4,10 +4,13 @@ exports.getResources = async () => {
   const results = await db("resources");
   return results;
 };
-exports.getResource = async (id) => {
-  return await db("resources").where({ id }).first();
+exports.getResource = async (resources_id) => {
+  const data = await db("resources").where({ resources_id }).first();
+  return data;
 };
 exports.addResources = async (req, res, next) => {
-  await db("resources").where(req.body.id).insert(req.body);
-  next();
+  const data = await db("resources").insert(req.body);
+  data.then((response) => {
+    return response;
+  });
 };
