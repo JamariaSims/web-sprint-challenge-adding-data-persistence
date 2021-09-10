@@ -4,7 +4,7 @@ const router = require("./project/router");
 const server = express();
 
 server.use(express.json());
-server.use("/projects", router);
+server.use("/api", router);
 
 server.use((err, req, res, next) => {
   // eslint-disable-line
