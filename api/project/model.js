@@ -1,5 +1,5 @@
 // build your `Project` model here
 const db = require("../../data/dbConfig");
-function getResources() {
-  return db("resources");
-}
+exports.getProjects = () => {
+  return db("projects");
+};
