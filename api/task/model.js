@@ -1,5 +1,17 @@
 // build your `Task` model here
 const db = require("../../data/dbConfig");
-exports.getTasks = () => {
-  return db("tasks").join("projects", "projects_id", "=", "projects_id");
+exports.getTasks = async () => {
+  const data = await db("tasks").join(
+    "projects",
+    "projects.project_id",
+    "=",
+    "tasks.task_id"
+  );
+
+  return data.map((task) => {
+    return {
+      ...task,
+      task_completed: task.task_completed ? true : false,
+    };
+  });
 };
